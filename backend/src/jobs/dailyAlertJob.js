@@ -1,6 +1,6 @@
 const cron = require('node-cron');
 const Case = require('../models/Case');
-const { sendWhatsAppTemplate } = require('../utils/whatsapp');
+const { sendWhatsAppMessage } = require('../utils/whatsappConfig');
 
 // Daily check at 10:00 AM
 const startAlertJob = () => {
@@ -43,7 +43,7 @@ const startAlertJob = () => {
         // Assuming Indian numbers (91)
         const phone = `91${caseDoc.ioPhone.replace(/\D/g, '').slice(-10)}`; 
         
-        await sendWhatsAppTemplate(phone, templateName, params);
+        await sendWhatsAppMessage(phone, templateName, params);
       }
 
     } catch (error) {
